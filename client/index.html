@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>NBA Player Search (Class Style)</title>
+  <link rel="icon" href="data:,"><!-- quiet favicon 404 -->
+  <link rel="stylesheet" href="./styles.css"/>
+</head>
+<body>
+    <header class="container">
+        <h1>NBA Report</h1>
+        <p class="subtle">Search players or see today’s games.</p>
+      
+        <nav class="tabs">
+          <button class="tab is-active" data-tab="search">Player Search</button>
+          <button class="tab" data-tab="games">Games Today</button>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="layout">
+          <!-- LEFT SIDEBAR -->
+          <aside class="sidebar">
+            <section id="favoritePlayerPanel" class="card">
+              <h3>Favorite Player</h3>
+              <div id="favoritePlayerContent">
+                <p>No favorite set.</p>
+              </div>
+              <!-- this stays hidden; the JS also injects its own buttons -->
+              <button id="favoriteClearBtn" hidden>Remove favorite</button>
+            </section>
+          </aside>
+      
+          <!-- RIGHT CONTENT -->
+          <section class="content">
+            <!-- SEARCH TAB -->
+            <section id="tab-search">
+              <div class="row">
+                <input id="q" type="search" placeholder="Search player (e.g., steph, lebron)" autocomplete="off"/>
+                <button id="searchBtn">Search</button>
+              </div>
+              <div id="status" class="status" aria-live="polite">Type a name and press Search.</div>
+      
+              <table class="table">
+                <thead>
+                  <tr><th>Player</th><th>Team</th><th>Pos</th><th>AI</th></tr>
+                </thead>
+                <tbody id="statsBody"></tbody>
+              </table>
+            </section>
+      
+            <section id="aiSection" hidden>
+              <h3>AI Report</h3>
+              <pre id="aiOutput" class="ai-output"></pre>
+              <button id="tweetLeBronBtn" class="btn primary">Tweet this (LeBron)</button>
+
+            </section>
+            
+            <!-- GAMES TAB -->
+            <section id="tab-games" hidden>
+              <div class="row">
+                <input id="gamesDate" type="date"/>
+                <button id="gamesLoadBtn">Load</button>
+              </div>
+              <div id="gamesStatus" class="status" aria-live="polite">Pick a date and click Load.</div>
+              <table class="table">
+                <thead><tr><th>Matchup</th><th>Status</th><th>Score</th></tr></thead>
+                <tbody id="gamesBody"></tbody>
+              </table>
+            </section>
+          </section>
+        </div>
+      </main>
+      
+      
+
+  <script src="./app.js"></script>
+</body>
+</html>
