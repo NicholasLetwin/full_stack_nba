@@ -7,6 +7,7 @@ body {
   background: #0b0c0f;
   color: #f4f6f8;
 }
+.visually-hidden { position:absolute; left:-9999px; }
 
 .container { max-width: var(--max); margin: 16px auto; padding: 0 16px; }
 h1 { margin: 16px 0 4px; }
@@ -113,3 +114,113 @@ tbody tr:hover { background: #12151a; }
   .layout { grid-template-columns: 1fr; }
   .sidebar { position: static; }
 }
+
+/* Favorite card: X handle row */
+.fav-tweet-block .row {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0 0;
+    align-items: stretch; /* makes heights match */
+  }
+  
+  /* Input looks like your dark theme search field */
+  #favXHandle {
+    flex: 1;
+    min-width: 0;                 /* prevents overflow in flex */
+    height: 44px;                 /* matches button height */
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #2a2f39;
+    background: #12151a;
+    color: #e9edf1;
+    font-size: 14px;
+    outline: none;
+  }
+  
+  #favXHandle::placeholder {
+    color: #8a9099;
+  }
+  
+  /* Make the blue button match height & align text nicely */
+  #favTweetAtMe.btn.primary {
+    height: 44px;
+    padding: 0 14px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;          /* keep label on one line */
+  }
+  
+  /* Focus rings for a11y */
+  #favXHandle:focus {
+    border-color: #4c8bf5;
+    box-shadow: 0 0 0 2px rgba(76,139,245,0.25);
+  }
+  #favTweetAtMe:focus-visible {
+    box-shadow: 0 0 0 3px rgba(76,139,245,0.35);
+  }
+  
+  /* Small screens: stack input and button nicely */
+  @media (max-width: 520px) {
+    .fav-tweet-block .row { flex-direction: column; }
+    #favTweetAtMe.btn.primary { width: 100%; }
+  }
+
+  /* Stack the X handle input + button vertically */
+.fav-tweet-block .row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+  
+  /* Make button full width when stacked */
+  .fav-tweet-block .row #favTweetAtMe {
+    width: 100%;
+  }
+/* Wrapper to hold the @ */
+.fav-input-wrap {
+    position: relative;
+  }
+  
+  .fav-input-wrap::before {
+    content: "@";
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #8a9099;
+    pointer-events: none;
+    font-size: 14px;
+  }
+  
+  /* Push text right so it doesn't overlap the @ */
+  .fav-input-wrap input {
+    padding-left: 26px !important;
+  }
+  
+  /* Stack input and button in the favorite card */
+.fav-tweet-block .row {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: 1fr;  /* single column */
+  }
+  .fav-tweet-block .btn.primary {
+    width: 100%;
+    justify-self: start;  /* don’t stretch weirdly in some browsers */
+  }
+  
+  /* Slightly nicer input visuals to match your dark theme */
+  #favXHandle {
+    padding: 12px 12px 12px 32px; /* leave room for the @ badge below */
+    border-radius: 10px;
+    border: 1px solid #2a2f39;
+    background: #12151a;
+    color: #e9edf1;
+    outline: none;
+  }
+  #favXHandle:focus {
+    border-color: #4c8bf5;
+    box-shadow: 0 0 0 3px rgba(76,139,245,.25);
+  }
+  
